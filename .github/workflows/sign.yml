@@ -1,0 +1,27 @@
+name: Yiban Auto Sign
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # GitHub Actions 的时区是 UTC+0
+
+jobs:
+  sign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Sign
+        run: python yiban-auto-sign.py
+        env:
+          YIBAN_PHONE: ${{ secrets.YIBAN_PHONE }}
+          YIBAN_PASSWORD: ${{ secrets.YIBAN_PASSWORD }}
