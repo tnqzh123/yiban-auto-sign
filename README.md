@@ -28,6 +28,9 @@ Python 实现的易班易伴云网薪签到自动化脚本。可与 GitHub Actio
 2. 在仓库的 Settings -> Security -> Secrets -> Actions 中新建两条 repository secret：
    - `YIBAN_PHONE`，值为你的易班账户绑定的手机号
    - `YIBAN_PASSWORD`，值为你的易班账户的密码
+3. 启用 GitHub Actions
+   - 进入仓库的 Actions 页面，点击绿色的「I understand my workflows, go ahead and enable them」按钮
+      - 出于安全考虑，GitHub 会对 Fork 时存在 Workflow 文件的仓库禁用 Actions，需要用户手动确认安全才会启用。
 
 默认每天早上八点自动触发 Workflow 发起签到（GitHub Actions 高负载时可能延迟）。如需修改为其他时间或条件下签到，可按照 GitHub [文档](https://docs.github.com/cn/actions/using-workflows/triggering-a-workflow)修改 `.github/workflows/sign.yml`。
 
